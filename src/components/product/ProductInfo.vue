@@ -111,7 +111,7 @@
       </div>
       <button
         type="button"
-        class="w-full sm:w-12 h-12 rounded-xl border border-gray-200 text-white bg-[#0051ff] hover:bg-blue-700 text-white font-black transition"
+        class="w-full sm:flex-1 h-12 rounded-xl bg-[#0051ff] hover:bg-blue-700 text-white font-black text-sm flex items-center justify-center gap-2 transition active:scale-[0.99]"
         @click="$emit('add-to-cart', { product: activeCartProduct, quantity })"
       >
         <i class="fa-solid fa-cart-shopping" /> Thêm vào giỏ hàng
