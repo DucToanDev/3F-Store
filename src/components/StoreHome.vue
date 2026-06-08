@@ -11,6 +11,15 @@
       <img :src="images.dogGif" alt="Cho gif" class="w-36 sm:w-46 md:w-64 h-auto" />
     </div>
 
+    <div class="fixed left-3 bottom-3 z-40 pointer-events-none sm:left-5 sm:bottom-5">
+      <div class="flex flex-col items-start gap-1">
+        <div class="cat-wow-bubble rounded-full bg-white px-3 py-1 text-xs sm:text-sm font-black text-[#0051ff] shadow-lg border border-blue-100">
+          Ngon thí!
+        </div>
+        <img :src="images.catGif" alt="Cho gif" class="w-24 sm:w-24 md:w-32 h-auto" />
+      </div>
+    </div>
+
     <div
       ref="mascotLottie"
       class="fixed right-4 bottom-28 z-40 w-20 h-20 pointer-events-none sm:right-8 sm:bottom-32 md:w-24 md:h-24"
@@ -147,6 +156,7 @@ export default {
     const images = {
       logo: require('@/assets/images/logo.webp'),
       dogGif: require('@/assets/images/cho.gif'),
+      catGif: require('@/assets/images/meo.gif'),
       govSeal: require('@/assets/images/gov-seal.webp'),
       bestSellerBg: require('@/assets/images/banner.png')
     }
@@ -387,5 +397,49 @@ export default {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+.cat-wow-bubble {
+  position: relative;
+  transform-origin: 18px 100%;
+  animation: cat-wow-pop 2.4s ease-in-out infinite;
+}
+
+.cat-wow-bubble::after {
+  position: absolute;
+  left: 28px;
+  bottom: -7px;
+  width: 12px;
+  height: 12px;
+  content: '';
+  background: #fff;
+  border-right: 1px solid #dbeafe;
+  border-bottom: 1px solid #dbeafe;
+  transform: rotate(45deg);
+}
+
+@keyframes cat-wow-pop {
+  0%,
+  68%,
+  100% {
+    opacity: 0;
+    transform: translateY(8px) scale(0.82) rotate(-5deg);
+  }
+
+  10% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.12) rotate(2deg);
+  }
+
+  18%,
+  54% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(-1deg);
+  }
+
+  62% {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.96) rotate(2deg);
+  }
 }
 </style>

@@ -204,7 +204,8 @@ export default {
     },
     openCart () {
       this.closeMenu()
-      this.cart.open()
+      this.cart.close()
+      if (this.$route.path !== '/cart') this.$router.push('/cart')
     }
   }
 }

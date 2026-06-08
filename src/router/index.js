@@ -4,6 +4,8 @@ import StoreHome from '@/components/StoreHome'
 import ProductDetail from '@/components/ProductDetail'
 import ProductListing from '@/components/ProductListing'
 import CategoryPage from '@/components/CategoryPage'
+import CartPage from '@/components/CartPage'
+import CheckoutPage from '@/components/CheckoutPage'
 
 Vue.use(Router)
 
@@ -27,6 +29,16 @@ export default new Router({
       path: '/categories',
       name: 'CategoryPage',
       component: CategoryPage
+    },
+    {
+      path: '/cart',
+      name: 'CartPage',
+      component: CartPage
+    },
+    {
+      path: '/checkout',
+      name: 'CheckoutPage',
+      component: CheckoutPage
     },
     {
       path: '/product/:slug',

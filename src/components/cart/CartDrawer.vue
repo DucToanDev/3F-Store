@@ -58,10 +58,10 @@
           <span>Tạm tính:</span>
           <strong class="text-lg text-[#0051ff]">{{ formatMoney(cart.subtotal) }}</strong>
         </div>
-        <button type="button" class="w-full h-12 rounded-xl bg-[#0051ff] hover:bg-blue-700 text-white font-black">
+        <button type="button" class="w-full h-12 rounded-xl bg-[#0051ff] hover:bg-blue-700 text-white font-black" @click="goToCheckout">
           Thanh toán
         </button>
-        <button type="button" class="w-full h-11 rounded-xl border border-gray-200 text-gray-700 font-bold hover:border-[#0051ff] hover:text-[#0051ff]" @click="cart.close">
+        <button type="button" class="w-full h-11 rounded-xl border border-gray-200 text-gray-700 font-bold hover:border-[#0051ff] hover:text-[#0051ff]" @click="goToCart">
           Xem giỏ hàng
         </button>
       </footer>
@@ -82,6 +82,14 @@ export default {
   methods: {
     formatMoney (value) {
       return Number(value || 0).toLocaleString('vi-VN') + 'đ'
+    },
+    goToCart () {
+      this.cart.close()
+      if (this.$route.path !== '/cart') this.$router.push('/cart')
+    },
+    goToCheckout () {
+      this.cart.close()
+      if (this.$route.path !== '/checkout') this.$router.push('/checkout')
     }
   }
 }
