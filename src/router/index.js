@@ -6,6 +6,7 @@ import ProductListing from '@/components/ProductListing'
 import CategoryPage from '@/components/CategoryPage'
 import CartPage from '@/components/CartPage'
 import CheckoutPage from '@/components/CheckoutPage'
+import AuthPage from '@/components/AuthPage'
 
 Vue.use(Router)
 
@@ -39,6 +40,16 @@ export default new Router({
       path: '/checkout',
       name: 'CheckoutPage',
       component: CheckoutPage
+    },
+    {
+      path: '/login',
+      name: 'AuthPage',
+      component: AuthPage
+    },
+    {
+      path: '/register',
+      name: 'RegisterPage',
+      component: AuthPage
     },
     {
       path: '/product/:slug',

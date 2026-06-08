@@ -114,13 +114,13 @@
           <div class="hidden lg:flex items-center gap-5 text-white flex-shrink-0 self-start mt-1.5">
             <div class="w-px h-8 bg-white/40 mx-1" />
 
-            <div class="flex items-center gap-2 cursor-pointer hover:text-yellow-300 transition group">
+            <router-link to="/login" class="flex items-center gap-2 cursor-pointer hover:text-yellow-300 transition group">
               <i class="fa-regular fa-circle-user text-[26px]" />
               <div class="flex flex-col leading-tight">
                 <span class="text-[11px]">Đăng nhập</span>
                 <span class="font-bold text-[14px]">Tài khoản</span>
               </div>
-            </div>
+            </router-link>
 
             <div class="flex items-center gap-2 cursor-pointer hover:text-yellow-300 transition group">
               <i class="fa-solid fa-list-check text-[24px]" />
@@ -146,7 +146,9 @@
             <button type="button" class="cursor-pointer" aria-label="Mở tìm kiếm" @click="isMobileSearchOpen = !isMobileSearchOpen">
               <i class="fa-solid fa-magnifying-glass text-[21px]" />
             </button>
-            <i class="fa-regular fa-circle-user text-[22px] cursor-pointer" />
+            <router-link to="/login" aria-label="Tài khoản">
+              <i class="fa-regular fa-circle-user text-[22px] cursor-pointer" />
+            </router-link>
             <button type="button" class="relative cursor-pointer" @click="openCart">
               <i class="fa-solid fa-cart-shopping text-[22px]" />
               <span class="absolute -top-1.5 -right-2 min-w-[18px] h-[18px] px-1 bg-red-500 border border-white flex items-center justify-center rounded-full text-[10px] font-bold">{{ cart.count }}</span>

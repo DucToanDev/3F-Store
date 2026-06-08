@@ -30,7 +30,14 @@
         </div>
         <div class="w-[90px] flex flex-col items-center justify-center px-2.5">
           <span class="text-[10px] text-gray-400 mb-2">{{ voucher.used }}</span>
-          <button type="button" class="w-full bg-[#0051ff] hover:bg-blue-700 active:scale-95 text-white text-xs font-bold py-1.5 rounded-full transition-all">Lưu</button>
+          <button
+            type="button"
+            class="w-full bg-[#0051ff] hover:bg-blue-700 active:scale-95 text-white text-xs font-bold py-1.5 rounded-full transition-all"
+            :class="{ 'bg-green-600 hover:bg-green-700': isSaved(voucher.code) }"
+            @click="saveVoucher(voucher)"
+          >
+            {{ isSaved(voucher.code) ? 'Đã lưu' : 'Lưu' }}
+          </button>
         </div>
       </div>
     </div>
@@ -42,6 +49,35 @@ export default {
   name: 'VoucherSection',
   props: {
     vouchers: { type: Array, required: true }
+  },
+  data () {
+    return {
+      savedCodes: this.getSavedCodes()
+    }
+  },
+  methods: {
+    isLoggedIn () {
+      return Boolean(window.localStorage.getItem('3f_auth_user'))
+    },
+    getSavedCodes () {
+      try {
+        return JSON.parse(window.localStorage.getItem('3f_saved_vouchers') || '[]')
+      } catch (error) {
+        return []
+      }
+    },
+    isSaved (code) {
+      return this.savedCodes.indexOf(code) !== -1
+    },
+    saveVoucher (voucher) {
+      if (!this.isLoggedIn()) {
+        this.$router.push({ path: '/login', query: { redirect: this.$route.fullPath } })
+        return
+      }
+      if (this.isSaved(voucher.code)) return
+      this.savedCodes = this.savedCodes.concat(voucher.code)
+      window.localStorage.setItem('3f_saved_vouchers', JSON.stringify(this.savedCodes))
+    }
   }
 }
 </script>
