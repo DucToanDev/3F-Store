@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>3F Store - Thức ăn thú cưng</title>
+
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;family=Momo+Trust+Sans:wght@200..800&amp;family=MuseoModerno:ital,wght@0,100..900;1,100..900&amp;family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;family=Quicksand:wght@300..700&amp;family=Roboto:ital,wght@0,100..900;1,100..900&amp;family=Source+Sans+3:ital,wght@0,200..900;1,200..900&amp;family=Space+Grotesk:wght@300..700&amp;display=swap"
+            rel="stylesheet">
+
+        <style>
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .font-desgin {
+            font-family: "Quicksand", sans-serif;
+            font-weight: 600;
+        }
+
+        /* Smooth scrolling cho các carousel */
+        .scroll-smooth-custom {
+            scroll-behavior: smooth;
+        }
+
+        /* Hiệu ứng chữ chạy liên tục từ phải sang trái */
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .animate-marquee {
+            display: inline-block;
+            animation: marquee 20s linear infinite;
+            white-space: nowrap;
+            will-change: transform;
+        }
+
+        .pause-on-hover:hover .animate-marquee {
+            animation-play-state: paused;
+        }
+
+        .fade-edges {
+            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        }
+    </style>
+    </head>
+
+    <body class="bg-gray-50 text-gray-800 font-desgin overflow-x-hidden">
+
+        <div id="mobile-menu-overlay"
+            class="fixed inset-0 bg-black/40 z-[60] hidden transition-opacity md:hidden"></div>
+
+        <div
+            class="fixed right-3 bottom-3 z-40 pointer-events-none sm:right-5 sm:bottom-5">
+            <img src="assets/img/cho.gif" alt="Cho gif"
+                class="w-32 sm:w-32 md:w-28 h-auto">
+        </div>
+
+        <div id="mobile-menu"
+            class="fixed inset-y-0 left-0 w-[300px] sm:w-[360px] bg-white z-[70] transform -translate-x-full transition-transform duration-300 flex flex-col h-full overflow-y-auto md:hidden">
+            <div
+                class="flex justify-between items-center p-4 border-b border-gray-100">
+                <div
+                    class="text-[#FFC107] text-3xl font-black tracking-tighter">
+                    3FStore<span class="text-sm font-bold ml-0.5">.vn</span>
+                </div>
+                <button id="close-menu-btn" type="button"
+                    class="text-gray-500 hover:text-gray-800 p-2"
+                    aria-label="Đóng menu">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+            </div>
+
+            <div class="p-4">
+                <div class="bg-[#f2f4fc] rounded-2xl p-4 mb-4">
+                    <button type="button"
+                        class="w-full bg-[#0051ff] text-white py-3 rounded-xl font-bold text-sm">Đăng
+                        nhập / Đăng ký</button>
+                </div>
+                <div class="relative mb-2">
+                    <i
+                        class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-gray-500"></i>
+                    <input type="text" placeholder="Tìm kiếm sản phẩm..."
+                        class="w-full bg-[#e3e6f9] py-2.5 pl-11 pr-4 rounded-xl outline-none text-sm text-gray-700">
+                </div>
+            </div>
+
+            <ul
+                class="flex flex-col text-[15px] text-gray-700 font-medium pb-2 border-b border-gray-200">
+                <li
+                    class="px-5 py-3.5 flex justify-between items-center cursor-pointer hover:bg-gray-50">
+                    Chó <i
+                        class="fa-solid fa-chevron-down text-xs text-gray-400"></i>
+                </li>
+                <li
+                    class="px-5 py-3.5 flex justify-between items-center cursor-pointer hover:bg-gray-50">
+                    Mèo <i
+                        class="fa-solid fa-chevron-down text-xs text-gray-400"></i>
+                </li>
+                <li class="px-5 py-3.5 cursor-pointer hover:bg-gray-50">Thương
+                    hiệu</li>
+                <li class="px-5 py-3.5 cursor-pointer hover:bg-gray-50">Blog
+                    chăm Boss</li>
+                <li class="px-5 py-3.5 cursor-pointer hover:bg-gray-50">Khuyến
+                    mãi</li>
+                <li class="px-5 py-3.5 cursor-pointer hover:bg-gray-50">Tin
+                    tức</li>
+            </ul>
+            <ul
+                class="flex flex-col text-[15px] text-gray-600 font-medium py-2">
+                <li class="px-5 py-3 cursor-pointer hover:bg-gray-50">Tra cứu
+                    đơn hàng</li>
+                <li class="px-5 py-3 cursor-pointer hover:bg-gray-50">Đơn hàng
+                    của tôi</li>
+            </ul>
+            <div class="mt-auto bg-[#f8f9fa] p-5 border-t border-gray-200">
+                <div class="text-xs font-bold text-gray-500 mb-4 uppercase">Hỗ
+                    trợ</div>
+                <div
+                    class="flex items-center gap-3 text-[#0051ff] font-medium text-[15px] mb-3 cursor-pointer">
+                    <i class="fa-solid fa-phone-volume"></i> Hotline: 0374 414
+                    142
+                </div>
+                <div
+                    class="flex items-center gap-3 text-[#0051ff] font-medium text-[15px] cursor-pointer">
+                    <i class="fa-regular fa-comment-dots"></i> Chat Zalo
+                </div>
+            </div>
+        </div>
+
+        <div class="sticky top-0 z-50">
+            <div
+                class="bg-[#0051ff] text-white text-xs py-1.5 border-b border-blue-400/30">
+                <div
+                    class="max-w-7xl mx-auto px-4 flex justify-between items-center">
+                    <div class="hidden sm:flex items-center gap-4">
+                        <a href="tel:0879997474"
+                            class="flex items-center gap-1.5 hover:text-gray-200 transition">
+                            <i class="fa-solid fa-phone"></i> 087.999.7474
+                        </a>
+                        <span class="text-white/50">|</span>
+                        <a href="mailto:3fstorevietnam@gmail.com"
+                            class="flex items-center gap-1.5 hover:text-gray-200 transition">
+                            <i class="fa-solid fa-envelope"></i>
+                            3fstorevietnam@gmail.com
+                        </a>
+                    </div>
+                    <div class="flex justify-end w-full sm:w-auto">
+                        <span
+                            class="flex items-center gap-1.5 cursor-pointer hover:text-gray-200 transition">
+                            <i class="fa-solid fa-location-dot"></i> 16 Đường số
+                            12 P. An Khánh, TP Thủ Đức, TP HCM
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <header class="bg-[#0051ff] py-3 shadow-md">
+                <div
+                    class="max-w-7xl mx-auto px-4 flex items-center justify-between md:gap-6 lg:gap-8">
+
+                    <button id="open-menu-btn" type="button"
+                        class="md:hidden text-white w-8 h-8 flex items-center justify-start flex-shrink-0"
+                        aria-label="Mở menu">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+
+                    <a href="#"
+                        class="cursor-pointer flex-shrink-0 w-24 md:w-28 lg:w-32 self-start mt-1">
+                        <img src="assets/img/logo.webp"
+                            class="w-full h-auto invert grayscale brightness-0 contrast-200 mix-blend-screen"
+                            alt="3F Logo">
+                    </a>
+
+                    <div class="hidden md:flex flex-col flex-1 max-w-3xl">
+                        <div class="relative w-full">
+                            <i
+                                class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-red-500 text-lg"></i>
+                            <input type="text"
+                                placeholder="Tìm kiếm sản phẩm..."
+                                class="w-full py-2.5 pl-11 pr-5 rounded-full outline-none text-[15px] text-gray-700 shadow-sm">
+                        </div>
+                        <nav
+                            class="flex gap-4 sm:gap-5 mt-3 text-white text-[13px] font-medium px-2 overflow-x-auto hide-scrollbar whitespace-nowrap">
+                            <a href="#"
+                                class="hover:text-yellow-300 transition">Royal
+                                Canin</a>
+                            <a href="#"
+                                class="hover:text-yellow-300 transition">Thức ăn
+                                chó</a>
+                            <a href="#"
+                                class="hover:text-yellow-300 transition">Thức ăn
+                                mèo</a>
+                            <a href="#"
+                                class="hover:text-yellow-300 transition">Trị
+                                ve</a>
+                            <a href="#"
+                                class="hover:text-yellow-300 transition">Cát vệ
+                                sinh</a>
+                            <a href="#"
+                                class="hover:text-yellow-300 transition">Đồ chơi
+                                thú cưng</a>
+                        </nav>
+                    </div>
+
+                    <div
+                        class="hidden lg:flex items-center gap-5 text-white flex-shrink-0 self-start mt-1.5">
+                        <div class="w-px h-8 bg-white/40 mx-1"></div>
+
+                        <div
+                            class="flex items-center gap-2 cursor-pointer hover:text-yellow-300 transition group">
+                            <i
+                                class="fa-regular fa-circle-user text-[26px]"></i>
+                            <div class="flex flex-col leading-tight">
+                                <span class="text-[11px]">Đăng nhập</span>
+                                <span class="font-bold text-[14px]">Tài
+                                    khoản</span>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-center gap-2 cursor-pointer hover:text-yellow-300 transition group">
+                            <i class="fa-solid fa-list-check text-[24px]"></i>
+                            <div class="flex flex-col leading-tight">
+                                <span class="text-[11px]">Đơn hàng</span>
+                                <span class="font-bold text-[14px]">Đã
+                                    đặt</span>
+                            </div>
+                        </div>
+
+                        <div
+                            class="flex items-center gap-2 cursor-pointer hover:text-yellow-300 transition group">
+                            <i class="fa-regular fa-heart text-[26px]"></i>
+                            <span class="font-bold text-[14px]">Yêu thích</span>
+                        </div>
+
+                        <div
+                            class="flex items-center gap-2 cursor-pointer hover:text-yellow-300 transition group">
+                            <i
+                                class="fa-solid fa-cart-shopping text-[24px]"></i>
+                            <span class="font-bold text-[14px]">Giỏ hàng</span>
+                            <span
+                                class="w-[22px] h-[22px] flex items-center justify-center border border-white rounded-full text-[12px] font-bold text-[#0051ff] bg-white">0</span>
+                        </div>
+                    </div>
+
+                    <div
+                        class="flex md:hidden items-center gap-4 text-white flex-shrink-0">
+                        <i
+                            class="fa-regular fa-circle-user text-[22px] cursor-pointer"></i>
+                        <div class="relative cursor-pointer">
+                            <i
+                                class="fa-solid fa-cart-shopping text-[22px]"></i>
+                            <span
+                                class="absolute -top-1.5 -right-2 w-[18px] h-[18px] bg-red-500 border border-white flex items-center justify-center rounded-full text-[10px] font-bold">0</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div
+                class="md:hidden bg-[#0051ff] px-4 pb-3 border-b border-blue-700/50 shadow-sm">
+                <div class="relative w-full">
+                    <i
+                        class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-red-500"></i>
+                    <input type="text" placeholder="Tìm kiếm sản phẩm..."
+                        class="w-full py-2.5 pl-11 pr-4 rounded-xl outline-none text-sm text-gray-700">
+                </div>
+                <nav
+                    class="flex gap-4 mt-3 text-white text-[12px] font-medium px-1 overflow-x-auto hide-scrollbar whitespace-nowrap">
+                    <a href="#" class="hover:text-yellow-300 transition">Royal
+                        Canin</a>
+                    <a href="#" class="hover:text-yellow-300 transition">Thức ăn
+                        chó</a>
+                    <a href="#" class="hover:text-yellow-300 transition">Thức ăn
+                        mèo</a>
+                </nav>
+            </div>
+        </div>
+
+        <nav class="hidden md:block bg-white shadow-sm border-b relative z-40">
+            <div
+                class="max-w-7xl mx-auto px-4 flex justify-between items-center text-[15px] text-gray-800">
+                <ul class="flex gap-7 h-full">
+
+                    <li
+                        class="group relative hover:text-[#0051ff] cursor-pointer flex items-center gap-1 transition py-3.5">
+                        Chó <i
+                            class="fa-solid fa-chevron-down text-[11px] group-hover:rotate-180 transition-transform"></i>
+                        <div
+                            class="absolute top-full left-0 w-[220px] bg-white rounded-b-xl rounded-tr-xl shadow-[0_10px_25px_rgba(0,0,0,0.1)] border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 overflow-hidden">
+                            <ul class="flex flex-col text-[14px] text-gray-700">
+                                <li
+                                    class="px-5 py-3 hover:bg-blue-50 hover:text-[#0051ff] border-b border-gray-50 transition-colors">Thức
+                                    ăn hạt cho chó</li>
+                                <li
+                                    class="px-5 py-3 hover:bg-blue-50 hover:text-[#0051ff] border-b border-gray-50 transition-colors">Pate
+                                    & Xúc xích</li>
+                                <li
+                                    class="px-5 py-3 hover:bg-blue-50 hover:text-[#0051ff] border-b border-gray-50 transition-colors">Bánh
+                                    thưởng & Snack</li>
+                                <li
+                                    class="px-5 py-3 hover:bg-blue-50 hover:text-[#0051ff] transition-colors">Sữa
+                                    tắm & Vệ sinh</li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li
+                        class="group relative hover:text-[#0051ff] cursor-pointer flex items-center gap-1 transition py-3.5">
+                        Mèo <i
+                            class="fa-solid fa-chevron-down text-[11px] group-hover:rotate-180 transition-transform"></i>
+                        <div
+                            class="absolute top-full left-0 w-[220px] bg-white rounded-b-xl rounded-tr-xl shadow-[0_10px_25px_rgba(0,0,0,0.1)] border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 overflow-hidden">
+                            <ul class="flex flex-col text-[14px] text-gray-700">
+                                <li
+                                    class="px-5 py-3 hover:bg-blue-50 hover:text-[#0051ff] border-b border-gray-50 transition-colors">Thức
+                                    ăn hạt cho mèo</li>
+                                <li
+                                    class="px-5 py-3 hover:bg-blue-50 hover:text-[#0051ff] border-b border-gray-50 transition-colors">Pate
+                                    & Súp thưởng</li>
+                                <li
+                                    class="px-5 py-3 hover:bg-blue-50 hover:text-[#0051ff] border-b border-gray-50 transition-colors">Cát
+                                    vệ sinh</li>
+                                <li
+                                    class="px-5 py-3 hover:bg-blue-50 hover:text-[#0051ff] transition-colors">Đồ
+                                    chơi cho mèo</li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li
+                        class="hover:text-[#0051ff] cursor-pointer transition py-3.5">Phụ
+                        kiện cho thú cưng</li>
+
+                    <li
+                        class="group relative hover:text-[#0051ff] cursor-pointer flex items-center gap-1 transition py-3.5">
+                        Sản phẩm khác <i
+                            class="fa-solid fa-chevron-down text-[11px] group-hover:rotate-180 transition-transform"></i>
+                        <div
+                            class="absolute top-full left-0 w-[200px] bg-white rounded-b-xl rounded-tr-xl shadow-[0_10px_25px_rgba(0,0,0,0.1)] border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 overflow-hidden">
+                            <ul class="flex flex-col text-[14px] text-gray-700">
+                                <li
+                                    class="px-5 py-3 hover:bg-blue-50 hover:text-[#0051ff] border-b border-gray-50 transition-colors">Thuốc
+                                    Trị Ve & Giun</li>
+                                <li
+                                    class="px-5 py-3 hover:bg-blue-50 hover:text-[#0051ff] border-b border-gray-50 transition-colors">Chuồng
+                                    & Lồng</li>
+                                <li
+                                    class="px-5 py-3 hover:bg-blue-50 hover:text-[#0051ff] transition-colors">Quần
+                                    áo thú cưng</li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li
+                        class="hover:text-[#0051ff] cursor-pointer transition py-3.5">Khuyến
+                        mãi</li>
+                    <li
+                        class="hover:text-[#0051ff] cursor-pointer transition py-3.5">Tin
+                        tức</li>
+                </ul>
+
+                <div
+                    class="text-[#FFC107] font-bold text-[14px] ml-4 text-right">Tiết
+                    kiệm đến 25% khi là thành viên 3F Store</div>
+            </div>
+        </nav>
+
+        <main
+            class="max-w-7xl mx-auto px-4 py-4 md:py-6 space-y-6 md:space-y-8">
+
+            <section
+                class="w-full h-[200px] sm:h-[300px] md:h-[400px] rounded-xl overflow-hidden relative shadow-sm group">
+
+                <div id="main-banner-slider"
+                    class="flex w-full h-full overflow-x-auto hide-scrollbar snap-x snap-mandatory scroll-smooth-custom">
+                    <img src="assets/img/banner3.png"
+                        class="w-full h-full object-cover shrink-0 snap-center"
+                        alt="Banner 1">
+                    <img src="assets/img/banner6.png"
+                        class="w-full h-full object-cover shrink-0 snap-center"
+                        alt="Banner 2">
+                    <!-- <img src="https://placehold.co/1920x600/ff9900/ffffff?text=Banner+3+Thay+Tai+Day" class="w-full h-full object-cover shrink-0 snap-center" alt="Banner 3">   -->
+                </div>
+
+                <button id="banner-prev"
+                    class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/70 hover:bg-white text-gray-800 flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-md hidden md:flex active:scale-95">
+                    <i class="fa-solid fa-chevron-left text-sm"></i>
+                </button>
+                <button id="banner-next"
+                    class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/70 hover:bg-white text-gray-800 flex items-center justify-center opacity-0 group-hover:opacity-100 transition shadow-md hidden md:flex active:scale-95">
+                    <i class="fa-solid fa-chevron-right text-sm"></i>
+                </button>
+
+                <div id="banner-dots"
+                    class="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-2.5 bg-black/30 backdrop-blur-sm px-4 py-2 rounded-full">
+                </div>
+            </section>
+
+            <section
+                class="bg-[#f5f6f8] md:bg-white rounded-xl p-4 md:shadow-sm md:border md:flex md:justify-between md:items-center md:px-6">
+                <div
+                    class="flex items-center justify-between md:justify-start gap-4 mb-4 md:mb-0 md:border-r border-gray-200 md:pr-6 shrink-0">
+                    <span
+                        class="text-lg md:text-base font-black md:font-semibold text-gray-800 tracking-tight md:tracking-normal">
+                        Xin chào!
+                    </span>
+                    <button type="button"
+                        class="bg-[#0051ff] hover:bg-blue-700 active:scale-95 transition-all text-white px-5 md:px-4 py-1.5 rounded-full text-sm font-bold md:font-medium shadow-sm">
+                        Đăng nhập
+                    </button>
+                </div>
+
+                <div
+                    class="flex-1 overflow-hidden flex items-center bg-white md:bg-gray-50/50 rounded-lg md:rounded-full px-3 py-2.5 md:py-2 md:ml-6 border border-gray-200/60 shadow-[inset_0_1px_4px_rgba(0,0,0,0.02)] pause-on-hover cursor-default">
+                    <div
+                        class="bg-red-500 text-white text-[11px] md:text-xs font-bold px-2.5 py-1 rounded-md md:rounded-full flex items-center gap-1.5 z-10 shrink-0 shadow-sm">
+                        <i
+                            class="fa-solid fa-bolt text-yellow-300 animate-pulse"></i>
+                        <span class="tracking-wide">TIN HOT</span>
+                    </div>
+
+                    <div
+                        class="flex-1 overflow-hidden ml-3 relative h-5 flex items-center fade-edges">
+                        <div class="animate-marquee flex items-center gap-8">
+                            <span
+                                class="text-[13px] md:text-sm font-medium text-gray-700">
+                                🔥 Siêu Sale Sinh Nhật - Giảm đến 50% toàn bộ
+                                gian hàng!
+                            </span>
+                            <span
+                                class="text-[13px] md:text-sm font-medium text-gray-700">
+                                🚀 Freeship hỏa tốc 2H cho mọi đơn hàng nội
+                                thành TP.HCM.
+                            </span>
+                            <span
+                                class="text-[13px] md:text-sm font-medium text-gray-700">
+                                🎁 Tặng ngay Voucher 100K cho khách hàng đăng ký
+                                mới hôm nay.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="flex justify-between items-center mb-4">
+                    <h2
+                        class="text-lg md:text-xl font-bold text-gray-800 md:text-gray-800 flex items-center gap-2">
+                        <i class="fa-solid fa-ticket text-red-500"></i> Mã giảm
+                        giá
+                    </h2>
+                    <a href="#"
+                        class="text-blue-600 text-[13px] md:text-sm font-medium hover:underline flex items-center gap-1">
+                        Xem thêm <i
+                            class="fa-solid fa-arrow-right text-[10px] md:hidden"></i><span
+                            class="hidden md:inline">→</span>
+                    </a>
+                </div>
+
+                <div
+                    class="flex gap-4 overflow-x-auto hide-scrollbar p-6 bg-gray-100 snap-x snap-mandatory rounded-lg">
+                    <div
+                        class="relative min-w-[320px] h-[110px] flex bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow snap-start">
+                        <div class="w-3 bg-[#f13a3a] rounded-l-lg"></div>
+                        <div class="flex-1 flex flex-col justify-center p-3">
+                            <h3
+                                class="text-[#f13a3a] font-bold text-lg leading-tight">Giảm
+                                5%</h3>
+                            <p class="text-xs text-gray-500 mt-0.5">Đơn Tối
+                                Thiểu 999.000đ</p>
+                            <div class="flex items-center gap-2 mt-2.5">
+                                <span
+                                    class="bg-red-50 text-red-600 border border-red-100 font-mono font-bold text-[11px] px-2 py-0.5 rounded tracking-wide">PV5999K</span>
+                                <span
+                                    class="bg-blue-50 text-blue-600 text-[10px] font-semibold px-2 py-0.5 rounded">Toàn
+                                    Shop</span>
+                            </div>
+                        </div>
+                        <div
+                            class="relative w-[1px] border-l-2 border-dashed border-gray-200 my-2">
+                            <div
+                                class="absolute -top-3 -left-[9px] w-4 h-4 bg-gray-100 rounded-full"></div>
+                            <div
+                                class="absolute -bottom-3 -left-[9px] w-4 h-4 bg-gray-100 rounded-full"></div>
+                        </div>
+                        <div
+                            class="w-[90px] flex flex-col items-center justify-center px-2.5">
+                            <span class="text-[10px] text-gray-400 mb-2">Đã dùng
+                                15%</span>
+                            <button type="button"
+                                class="w-full bg-[#0051ff] hover:bg-blue-700 active:scale-95 text-white text-xs font-bold py-1.5 rounded-full transition-all">Lưu</button>
+                        </div>
+                    </div>
+
+                    <div
+                        class="relative min-w-[320px] h-[110px] flex bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow snap-start">
+                        <div class="w-3 bg-[#0051ff] rounded-l-lg"></div>
+                        <div class="flex-1 flex flex-col justify-center p-3">
+                            <h3
+                                class="text-[#0051ff] font-bold text-lg leading-tight">Giảm
+                                50.000đ</h3>
+                            <p class="text-xs text-gray-500 mt-0.5">Đơn Tối
+                                Thiểu 399.000đ</p>
+                            <div class="flex items-center gap-2 mt-2.5">
+                                <span
+                                    class="bg-gray-50 text-gray-700 border border-gray-200 font-mono font-bold text-[11px] px-2 py-0.5 rounded tracking-wide">SENMOI</span>
+                                <span
+                                    class="bg-blue-50 text-blue-600 text-[10px] font-semibold px-2 py-0.5 rounded">Toàn
+                                    Shop</span>
+                            </div>
+                        </div>
+                        <div
+                            class="relative w-[1px] border-l-2 border-dashed border-gray-200 my-2">
+                            <div
+                                class="absolute -top-3 -left-[9px] w-4 h-4 bg-gray-100 rounded-full"></div>
+                            <div
+                                class="absolute -bottom-3 -left-[9px] w-4 h-4 bg-gray-100 rounded-full"></div>
+                        </div>
+                        <div
+                            class="w-[90px] flex flex-col items-center justify-center px-2.5">
+                            <span
+                                class="text-[10px] text-gray-400 mb-2">∞</span>
+                            <button type="button"
+                                class="w-full bg-[#0051ff] hover:bg-blue-700 active:scale-95 text-white text-xs font-bold py-1.5 rounded-full transition-all">Lưu</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+                    <a href="#"
+                        class="block rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 aspect-[16/9] md:aspect-[8/5]">
+                        <img src="assets/img/banner1.png" alt="Thức ăn cho chó"
+                            class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                    </a>
+                    <a href="#"
+                        class="block rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 aspect-[16/9] md:aspect-[8/5]">
+                        <img src="assets/img/banner2.png" alt="Thức ăn cho mèo"
+                            class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
+                    </a>
+                </div>
+            </section>
+
+            <section
+                class="relative bg-[#ffffff] pt-8 pb-12 rounded-3xl overflow-hidden">
+                <div
+                    class="absolute top-0 left-0 w-full h-[300px] z-0 pointer-events-none">
+                    <img src="assets/img/banner.png" alt="Background Banner"
+                        class="w-full h-full object-cover object-top">
+                    <div
+                        class="absolute inset-x-0 bottom-0 h-60 bg-gradient-to-t from-[#0a0f1d] to-transparent"></div>
+                </div>
+
+                <div class="relative z-10 px-4 md:px-6 lg:px-8">
+                    <div
+                        class="flex flex-wrap gap-2 justify-between items-center mb-8">
+                        <div
+                            class="inline-flex items-center gap-2 px-5 py-1.5 rounded-full border border-gray-400/40 bg-[#0a0f1d]/60 backdrop-blur-md text-white shadow-sm">
+                            <i
+                                class="fa-solid fa-arrow-trend-up text-[#ff4d4f]"></i>
+                            <span
+                                class="font-bold text-[15px] tracking-wide">#Sản
+                                phẩm bán chạy nhất</span>
+                        </div>
+                        <button type="button"
+                            class="bg-[#1a56db] hover:bg-blue-500 text-white text-sm font-bold px-6 py-2 rounded-md transition-all shadow-[0_0_15px_rgba(26,86,219,0.6)] active:scale-95">
+                            Khám phá
+                        </button>
+                    </div>
+
+                    <div
+                        class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-5">
+
+                        <div
+                            class="group relative bg-white border border-gray-100 rounded-xl p-2.5 flex flex-col shadow-sm hover:shadow-lg hover:border-blue-200 transition-all duration-300">
+                            <span
+                                class="absolute top-2.5 left-2.5 bg-[#ffc107] text-gray-900 text-[9px] font-black px-1.5 py-0.5 rounded-sm z-10 tracking-wide">-29%</span>
+                            <button type="button"
+                                class="absolute top-2 right-2 w-7 h-7 bg-white rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 shadow-[0_2px_8px_rgba(0,0,0,0.08)] z-10 transition-colors">
+                                <i class="fa-regular fa-heart text-[12px]"></i>
+                            </button>
+                            <div
+                                class="aspect-square mb-2.5 overflow-hidden rounded-lg bg-transparent flex items-center justify-center p-4 cursor-pointer relative">
+                                <img
+                                    src="https://cf.shopee.vn/file/vn-11134207-81ztc-mo6jouo2n5z8fb"
+                                    alt="Pate Tươi The Pet"
+                                    class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 mix-blend-multiply">
+                            </div>
+                            <div class="flex flex-col flex-1">
+                                <a href="#"
+                                    class="text-[#0051ff] font-bold text-[12px] uppercase mb-1 hover:underline">The
+                                    Pet</a>
+                                <a href="#"
+                                    class="text-[14px] text-gray-800 font-bold leading-[1.2] h-[34px] line-clamp-2 mb-2 hover:text-[#0051ff] transition-colors">
+                                    Pate TƯƠI The Pet Cho Chó Mèo Biếng Ăn (1kg)
+                                </a>
+                                <div
+                                    class="flex items-center text-[12px] text-gray-500 mb-3 font-medium">
+                                    <i
+                                        class="fa-solid fa-star text-[#ffc107] mr-1"></i>
+                                    5.0
+                                    <span class="mx-1.5 text-gray-300">•</span>
+                                    Đã bán 70k+
+                                </div>
+                                <div
+                                    class="flex justify-between items-end mt-auto pt-1">
+                                    <div class="flex flex-col leading-tight">
+                                        <span
+                                            class="text-[12px] text-gray-400 line-through decoration-gray-300 mb-0.5">120.000đ</span>
+                                        <div class="flex items-center gap-1.5">
+                                            <span
+                                                class="text-[16px] font-black text-[#0051ff]">85.000đ</span>
+                                        </div>
+                                    </div>
+                                    <button type="button"
+                                        class="w-7 h-7 bg-[#0051ff] hover:bg-blue-700 active:scale-95 text-white rounded-lg flex items-center justify-center transition-all shadow-sm">
+                                        <i
+                                            class="fa-solid fa-bag-shopping text-[11px]"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="group relative bg-white border border-gray-100 rounded-xl p-2.5 flex flex-col shadow-sm hover:shadow-lg hover:border-blue-200 transition-all duration-300">
+                            <span
+                                class="absolute top-2.5 left-2.5 bg-[#ffc107] text-gray-900 text-[9px] font-black px-1.5 py-0.5 rounded-sm z-10 tracking-wide">-29%</span>
+                            <button type="button"
+                                class="absolute top-2 right-2 w-7 h-7 bg-white rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 shadow-[0_2px_8px_rgba(0,0,0,0.08)] z-10 transition-colors">
+                                <i class="fa-regular fa-heart text-[12px]"></i>
+                            </button>
+                            <div
+                                class="aspect-square mb-2.5 overflow-hidden rounded-lg bg-transparent flex items-center justify-center p-4 cursor-pointer relative">
+                                <img
+                                    src="https://cf.shopee.vn/file/vn-11134207-81ztc-mo6jouo2n5z8fb"
+                                    alt="Pate Tươi The Pet"
+                                    class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 mix-blend-multiply">
+                            </div>
+                            <div class="flex flex-col flex-1">
+                                <a href="#"
+                                    class="text-[#0051ff] font-bold text-[12px] uppercase mb-1 hover:underline">The
+                                    Pet</a>
+                                <a href="#"
+                                    class="text-[14px] text-gray-800 font-bold leading-[1.2] h-[34px] line-clamp-2 mb-2 hover:text-[#0051ff] transition-colors">
+                                    Pate TƯƠI The Pet Cho Chó Mèo Biếng Ăn (1kg)
+                                </a>
+                                <div
+                                    class="flex items-center text-[12px] text-gray-500 mb-3 font-medium">
+                                    <i
+                                        class="fa-solid fa-star text-[#ffc107] mr-1"></i>
+                                    5.0
+                                    <span class="mx-1.5 text-gray-300">•</span>
+                                    Đã bán 70k+
+                                </div>
+                                <div
+                                    class="flex justify-between items-end mt-auto pt-1">
+                                    <div class="flex flex-col leading-tight">
+                                        <span
+                                            class="text-[12px] text-gray-400 line-through decoration-gray-300 mb-0.5">120.000đ</span>
+                                        <div class="flex items-center gap-1.5">
+                                            <span
+                                                class="text-[16px] font-black text-[#0051ff]">85.000đ</span>
+                                        </div>
+                                    </div>
+                                    <button type="button"
+                                        class="w-7 h-7 bg-[#0051ff] hover:bg-blue-700 active:scale-95 text-white rounded-lg flex items-center justify-center transition-all shadow-sm">
+                                        <i
+                                            class="fa-solid fa-bag-shopping text-[11px]"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="group relative bg-white border border-gray-100 rounded-xl p-2.5 flex flex-col shadow-sm hover:shadow-lg hover:border-blue-200 transition-all duration-300">
+                            <span
+                                class="absolute top-2.5 left-2.5 bg-[#ffc107] text-gray-900 text-[9px] font-black px-1.5 py-0.5 rounded-sm z-10 tracking-wide">-29%</span>
+                            <button type="button"
+                                class="absolute top-2 right-2 w-7 h-7 bg-white rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 shadow-[0_2px_8px_rgba(0,0,0,0.08)] z-10 transition-colors">
+                                <i class="fa-regular fa-heart text-[12px]"></i>
+                            </button>
+                            <div
+                                class="aspect-square mb-2.5 overflow-hidden rounded-lg bg-transparent flex items-center justify-center p-4 cursor-pointer relative">
+                                <img
+                                    src="https://cf.shopee.vn/file/vn-11134207-81ztc-mo6jouo2n5z8fb"
+                                    alt="Pate Tươi The Pet"
+                                    class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 mix-blend-multiply">
+                            </div>
+                            <div class="flex flex-col flex-1">
+                                <a href="#"
+                                    class="text-[#0051ff] font-bold text-[12px] uppercase mb-1 hover:underline">The
+                                    Pet</a>
+                                <a href="#"
+                                    class="text-[14px] text-gray-800 font-bold leading-[1.2] h-[34px] line-clamp-2 mb-2 hover:text-[#0051ff] transition-colors">
+                                    Pate TƯƠI The Pet Cho Chó Mèo Biếng Ăn (1kg)
+                                </a>
+                                <div
+                                    class="flex items-center text-[12px] text-gray-500 mb-3 font-medium">
+                                    <i
+                                        class="fa-solid fa-star text-[#ffc107] mr-1"></i>
+                                    5.0
+                                    <span class="mx-1.5 text-gray-300">•</span>
+                                    Đã bán 70k+
+                                </div>
+                                <div
+                                    class="flex justify-between items-end mt-auto pt-1">
+                                    <div class="flex flex-col leading-tight">
+                                        <span
+                                            class="text-[12px] text-gray-400 line-through decoration-gray-300 mb-0.5">120.000đ</span>
+                                        <div class="flex items-center gap-1.5">
+                                            <span
+                                                class="text-[16px] font-black text-[#0051ff]">85.000đ</span>
+                                        </div>
+                                    </div>
+                                    <button type="button"
+                                        class="w-7 h-7 bg-[#0051ff] hover:bg-blue-700 active:scale-95 text-white rounded-lg flex items-center justify-center transition-all shadow-sm">
+                                        <i
+                                            class="fa-solid fa-bag-shopping text-[11px]"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="group relative bg-white border border-gray-100 rounded-xl p-2.5 flex flex-col shadow-sm hover:shadow-lg hover:border-blue-200 transition-all duration-300">
+                            <span
+                                class="absolute top-2.5 left-2.5 bg-[#ffc107] text-gray-900 text-[9px] font-black px-1.5 py-0.5 rounded-sm z-10 tracking-wide">-29%</span>
+                            <button type="button"
+                                class="absolute top-2 right-2 w-7 h-7 bg-white rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 shadow-[0_2px_8px_rgba(0,0,0,0.08)] z-10 transition-colors">
+                                <i class="fa-regular fa-heart text-[12px]"></i>
+                            </button>
+                            <div
+                                class="aspect-square mb-2.5 overflow-hidden rounded-lg bg-transparent flex items-center justify-center p-4 cursor-pointer relative">
+                                <img
+                                    src="https://cf.shopee.vn/file/vn-11134207-81ztc-mo6jouo2n5z8fb"
+                                    alt="Pate Tươi The Pet"
+                                    class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 mix-blend-multiply">
+                            </div>
+                            <div class="flex flex-col flex-1">
+                                <a href="#"
+                                    class="text-[#0051ff] font-bold text-[12px] uppercase mb-1 hover:underline">The
+                                    Pet</a>
+                                <a href="#"
+                                    class="text-[14px] text-gray-800 font-bold leading-[1.2] h-[34px] line-clamp-2 mb-2 hover:text-[#0051ff] transition-colors">
+                                    Pate TƯƠI The Pet Cho Chó Mèo Biếng Ăn (1kg)
+                                </a>
+                                <div
+                                    class="flex items-center text-[12px] text-gray-500 mb-3 font-medium">
+                                    <i
+                                        class="fa-solid fa-star text-[#ffc107] mr-1"></i>
+                                    5.0
+                                    <span class="mx-1.5 text-gray-300">•</span>
+                                    Đã bán 70k+
+                                </div>
+                                <div
+                                    class="flex justify-between items-end mt-auto pt-1">
+                                    <div class="flex flex-col leading-tight">
+                                        <span
+                                            class="text-[12px] text-gray-400 line-through decoration-gray-300 mb-0.5">120.000đ</span>
+                                        <div class="flex items-center gap-1.5">
+                                            <span
+                                                class="text-[16px] font-black text-[#0051ff]">85.000đ</span>
+                                        </div>
+                                    </div>
+                                    <button type="button"
+                                        class="w-7 h-7 bg-[#0051ff] hover:bg-blue-700 active:scale-95 text-white rounded-lg flex items-center justify-center transition-all shadow-sm">
+                                        <i
+                                            class="fa-solid fa-bag-shopping text-[11px]"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="group relative bg-white border border-gray-100 rounded-xl p-2.5 flex flex-col shadow-sm hover:shadow-lg hover:border-blue-200 transition-all duration-300 hidden lg:flex">
+                            <span
+                                class="absolute top-2.5 left-2.5 bg-[#ffc107] text-gray-900 text-[9px] font-black px-1.5 py-0.5 rounded-sm z-10 tracking-wide">-29%</span>
+                            <button type="button"
+                                class="absolute top-2 right-2 w-7 h-7 bg-white rounded-full flex items-center justify-center text-gray-400 hover:text-red-500 shadow-[0_2px_8px_rgba(0,0,0,0.08)] z-10 transition-colors">
+                                <i class="fa-regular fa-heart text-[12px]"></i>
+                            </button>
+                            <div
+                                class="aspect-square mb-2.5 overflow-hidden rounded-lg bg-transparent flex items-center justify-center p-4 cursor-pointer relative">
+                                <img
+                                    src="https://cf.shopee.vn/file/vn-11134207-81ztc-mo6jouo2n5z8fb"
+                                    alt="Pate Tươi The Pet"
+                                    class="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500 mix-blend-multiply">
+                            </div>
+                            <div class="flex flex-col flex-1">
+                                <a href="#"
+                                    class="text-[#0051ff] font-bold text-[12px] uppercase mb-1 hover:underline">The
+                                    Pet</a>
+                                <a href="#"
+                                    class="text-[14px] text-gray-800 font-bold leading-[1.2] h-[34px] line-clamp-2 mb-2 hover:text-[#0051ff] transition-colors">
+                                    Pate TƯƠI The Pet Cho Chó Mèo Biếng Ăn (1kg)
+                                </a>
+                                <div
+                                    class="flex items-center text-[12px] text-gray-500 mb-3 font-medium">
+                                    <i
+                                        class="fa-solid fa-star text-[#ffc107] mr-1"></i>
+                                    5.0
+                                    <span class="mx-1.5 text-gray-300">•</span>
+                                    Đã bán 70k+
+                                </div>
+                                <div
+                                    class="flex justify-between items-end mt-auto pt-1">
+                                    <div class="flex flex-col leading-tight">
+                                        <span
+                                            class="text-[12px] text-gray-400 line-through decoration-gray-300 mb-0.5">120.000đ</span>
+                                        <div class="flex items-center gap-1.5">
+                                            <span
+                                                class="text-[16px] font-black text-[#0051ff]">85.000đ</span>
+                                        </div>
+                                    </div>
+                                    <button type="button"
+                                        class="w-7 h-7 bg-[#0051ff] hover:bg-blue-700 active:scale-95 text-white rounded-lg flex items-center justify-center transition-all shadow-sm">
+                                        <i
+                                            class="fa-solid fa-bag-shopping text-[11px]"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+            <section
+                class="brand-section relative overflow-hidden px-4 md:px-6 lg:px-8 py-10">
+                <h2
+                    class="brand-heading text-xl md:text-2xl font-bold text-gray-800 mb-6 tracking-tight">
+                    Thương Hiệu Boss Thích
+                </h2>
+
+                <div class="relative brand-wrapper group">
+                    <div
+                        class="brand-container flex gap-4 overflow-x-auto hide-scrollbar snap-x snap-mandatory pb-4 scroll-smooth-custom">
+                        <div
+                            class="brand-card w-[160px] md:w-[190px] h-[90px] md:h-[110px] bg-white border border-gray-200 rounded-xl flex items-center justify-center p-4 snap-start hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer shrink-0">
+                            <img
+                                src="https://bizweb.dktcdn.net/100/487/588/collections/thie-t-ke-chu-a-co-te-n-jpeg.jpg?v=1686567170813"
+                                alt="4Paws"
+                                class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                        </div>
+                        <div
+                            class="brand-card w-[160px] md:w-[190px] h-[90px] md:h-[110px] bg-white border border-gray-200 rounded-xl flex items-center justify-center p-4 snap-start hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer shrink-0">
+                            <img
+                                src="https://bizweb.dktcdn.net/100/487/588/collections/nutrience-logo.png?v=1686564129097"
+                                alt="Nutrience"
+                                class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                        </div>
+                        <div
+                            class="brand-card w-[160px] md:w-[190px] h-[90px] md:h-[110px] bg-white border border-gray-200 rounded-xl flex items-center justify-center p-4 snap-start hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer shrink-0">
+                            <img
+                                src="https://bizweb.dktcdn.net/100/487/588/collections/brand-2.png?v=1686284341007"
+                                alt="Royal Canin"
+                                class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                        </div>
+                        <div
+                            class="brand-card w-[160px] md:w-[190px] h-[90px] md:h-[110px] bg-white border border-gray-200 rounded-xl flex items-center justify-center p-4 snap-start hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer shrink-0">
+                            <img
+                                src="https://bizweb.dktcdn.net/100/487/588/collections/download.png?v=1686540311363"
+                                alt="Monge"
+                                class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                        </div>
+                        <div
+                            class="brand-card w-[160px] md:w-[190px] h-[90px] md:h-[110px] bg-white border border-gray-200 rounded-xl flex items-center justify-center p-4 snap-start hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer shrink-0">
+                            <img
+                                src="https://bizweb.dktcdn.net/100/487/588/collections/brand-3.png?v=1686284354097"
+                                alt="Ganador"
+                                class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                        </div>
+                        <div
+                            class="brand-card w-[160px] md:w-[190px] h-[90px] md:h-[110px] bg-white border border-gray-200 rounded-xl flex items-center justify-center p-4 snap-start hover:shadow-md hover:-translate-y-1 transition-all duration-300 cursor-pointer shrink-0">
+                            <img
+                                src="https://bizweb.dktcdn.net/100/487/588/collections/nekko.png?v=1686564143443"
+                                alt="Nekko"
+                                class="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all duration-300">
+                        </div>
+                    </div>
+
+                    <button id="brand-next-btn" type="button"
+                        class="absolute -right-5 top-[40%] -translate-y-1/2 w-12 h-12 bg-white/90 backdrop-blur-sm border border-gray-200 rounded-full hidden md:flex items-center justify-center shadow-lg text-gray-400 hover:text-blue-600 hover:scale-105 transition-all z-10 cursor-pointer opacity-0 group-hover:opacity-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="w-5 h-5">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
+                    </button>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="bg-[#f8f9fb] pt-12 border-t border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+                <div
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-10">
+                    <div class="lg:col-span-1">
+                        <img src="assets/img/logo.webp" width="150px" alt>
+                        <p class="text-sm text-gray-600 mb-4">Cửa hàng kinh
+                            doanh sản phẩm dành cho ngành thú cưng</p>
+                        <div class="space-y-2 mb-6">
+                            <p
+                                class="text-sm text-gray-600 flex items-center gap-2">
+                                <i class="fa-solid fa-phone text-gray-400"></i>
+                                Hotline: <span
+                                    class="font-bold text-gray-800">087 999
+                                    7474</span>
+                            </p>
+                            <p
+                                class="text-sm text-gray-600 flex items-center gap-2">
+                                <i
+                                    class="fa-regular fa-envelope text-gray-400"></i>
+                                3fstorevietnam@gmail.com
+                            </p>
+                        </div>
+
+                        <h4
+                            class="text-xs font-bold text-gray-500 uppercase mb-3">Theo
+                            Dõi 3fstore</h4>
+                        <div class="flex gap-2">
+                            <a href="#"
+                                class="w-8 h-8 bg-blue-600 text-white rounded-md flex items-center justify-center hover:bg-blue-700 transition"
+                                aria-label="Facebook">
+                                <i class="fa-brands fa-facebook-f"></i>
+                            </a>
+                            <a href="#"
+                                class="w-8 h-8 bg-blue-600 text-white rounded-md flex items-center justify-center hover:bg-blue-700 transition"
+                                aria-label="Instagram">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                            <a href="#"
+                                class="w-8 h-8 bg-blue-600 text-white rounded-md flex items-center justify-center hover:bg-blue-700 transition"
+                                aria-label="Tiktok">
+                                <i class="fa-brands fa-tiktok"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-sm font-bold text-gray-800 mb-4">Về
+                            3fstore</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#"
+                                    class="text-sm text-gray-500 hover:text-blue-600 transition">Giới
+                                    Thiệu</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-gray-500 hover:text-blue-600 transition">Thành
+                                    Viên Paddier</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-gray-500 hover:text-blue-600 transition">Liên
+                                    Hệ</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-gray-500 hover:text-blue-600 transition">Tuyển
+                                    Dụng</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-sm font-bold text-gray-800 mb-4">Mua
+                            Sắm</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#"
+                                    class="text-sm text-gray-500 hover:text-blue-600 transition">Dành
+                                    Cho Chó</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-gray-500 hover:text-blue-600 transition">Dành
+                                    Cho Mèo</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-gray-500 hover:text-blue-600 transition">Thương
+                                    Hiệu</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-gray-500 hover:text-blue-600 transition">Blogs</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-gray-500 hover:text-blue-600 transition">Bộ
+                                    Sưu Tập</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-sm font-bold text-gray-800 mb-4">Hỗ Trợ
+                            Khách Hàng</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#"
+                                    class="text-sm text-gray-500 hover:text-blue-600 transition">Chính
+                                    Sách Đổi Trả Hàng</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-gray-500 hover:text-blue-600 transition">Phương
+                                    Thức Thanh Toán</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-gray-500 hover:text-blue-600 transition">Hướng
+                                    Dẫn Mua Hàng</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-gray-500 hover:text-blue-600 transition">Chính
+                                    Sách Vận Chuyển</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-gray-500 hover:text-blue-600 transition">Chính
+                                    Sách Bảo Mật</a></li>
+                            <li><a href="#"
+                                    class="text-sm text-gray-500 hover:text-blue-600 transition">Câu
+                                    Hỏi Thường Gặp</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h3 class="text-sm font-bold text-gray-800 mb-4">Hệ
+                            Thống Cửa Hàng</h3>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="text-sm font-bold text-gray-700">16
+                                    Đường số 12</h4>
+                                <p class="text-xs text-gray-500 mt-0.5">16 Đường
+                                    số 12 P. An Khánh, TP Thủ Đức, TP HCM</p>
+                            </div>
+
+                            <div>
+                                <iframe
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7838.522251090781!2d106.72976997451738!3d10.791301458920247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529082c98d0e9%3A0x9bd395e7d8dd9e5b!2s3F%20Store%20-%20Shop%20%26%20Kho%20t%E1%BB%95ng!5e0!3m2!1svi!2s!4v1780632689693!5m2!1svi!2s"
+                                    width="200" height="150" style="border:0;"
+                                    allowfullscreen loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="border-gray-200">
+
+                <div class="py-6 flex flex-col md:flex-row gap-8">
+                    <div>
+                        <h4
+                            class="text-xs font-bold text-gray-500 uppercase mb-3">Thanh
+                            Toán</h4>
+                        <div class="flex gap-2 items-center">
+                            <span
+                                class="bg-[#141b4d] text-white text-[10px] font-bold px-3 py-1 rounded">VISA</span>
+                            <span
+                                class="bg-gray-100 border border-gray-200 w-9 h-6 rounded flex items-center justify-center">
+                                <div class="flex">
+                                    <div
+                                        class="w-2.5 h-2.5 bg-red-500 rounded-full"></div>
+                                    <div
+                                        class="w-2.5 h-2.5 bg-yellow-500 rounded-full -ml-1 opacity-90"></div>
+                                </div>
+                            </span>
+                            <span
+                                class="bg-gray-100 border border-gray-200 text-[#003986] text-[8px] font-black px-1 py-1 rounded">JCB</span>
+                            <span
+                                class="bg-gray-100 border border-gray-200 text-gray-600 text-[10px] font-bold px-2 py-1 rounded">ATM</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h4
+                            class="text-xs font-bold text-gray-500 uppercase mb-3">Vận
+                            Chuyển</h4>
+                        <div class="flex gap-2 items-center">
+                            <span
+                                class="bg-[#f06e28] text-white text-[10px] font-bold px-2 py-1 rounded">Ahamove</span>
+                            <span
+                                class="bg-[#f26522] text-white text-[10px] font-bold px-2 py-1 rounded">GHN</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-[#f0f2f8] py-5 border-t border-gray-200 mt-2">
+                <div
+                    class="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div
+                        class="text-xs text-gray-500 text-center md:text-left leading-relaxed">
+                        <p>© 2026 CÔNG TY TNHH 3F STORE. MST: 0319126776.</p>
+                        <p>16 Đường số 12, Phường An Khánh, TP Hồ Chí Minh, Việt
+                            Nam</p>
+                    </div>
+                    <img src="assets/img/gov-seal.webp"
+                        alt="Đã thông báo Bộ Công Thương"
+                        class="h-10 object-contain">
+                </div>
+            </div>
+        </footer>
+
+        <script>
+        // --- 1. Xử lý Menu Mobile ---
+        const btnOpen = document.getElementById('open-menu-btn');
+        const btnClose = document.getElementById('close-menu-btn');
+        const overlay = document.getElementById('mobile-menu-overlay');
+        const menu = document.getElementById('mobile-menu');
+
+        function toggleMenu() {
+            if (window.innerWidth >= 768) return;
+            const isOpen = !menu.classList.contains('-translate-x-full');
+            if (isOpen) {
+                menu.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            } else {
+                menu.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        if(btnOpen && btnClose && overlay) {
+            btnOpen.addEventListener('click', toggleMenu);
+            btnClose.addEventListener('click', toggleMenu);
+            overlay.addEventListener('click', toggleMenu);
+        }
+
+        // --- 2. Xử lý Trượt Nhãn Hàng ---
+        const brandContainer = document.querySelector('.brand-container');
+        const brandNextBtn = document.getElementById('brand-next-btn');
+
+        if (brandContainer && brandNextBtn) {
+            brandNextBtn.addEventListener('click', () => {
+                const firstCard = brandContainer.querySelector('.brand-card');
+                const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 190;
+                brandContainer.scrollBy({ left: cardWidth + 16, behavior: 'smooth' });
+            });
+        }
+
+        // --- 3. Xử lý Main Banner Slider ---
+        const bannerSlider = document.getElementById('main-banner-slider');
+        const bannerPrevBtn = document.getElementById('banner-prev');
+        const bannerNextBtn = document.getElementById('banner-next');
+        const dotsContainer = document.getElementById('banner-dots');
+
+        if (bannerSlider) {
+            const slides = bannerSlider.querySelectorAll('img');
+            const totalSlides = slides.length;
+            let currentBannerIndex = 0;
+
+            // Render Dots tự động dựa theo số lượng ảnh
+            slides.forEach((_, i) => {
+                const dot = document.createElement('div');
+                dot.className = `w-2 h-2 rounded-full cursor-pointer transition-colors ${i === 0 ? 'bg-white scale-125' : 'bg-white/50'}`;
+                
+                // Click vào Dot để chuyển ảnh
+                dot.addEventListener('click', () => {
+                    bannerSlider.scrollTo({ left: bannerSlider.clientWidth * i, behavior: 'smooth' });
+                });
+                dotsContainer.appendChild(dot);
+            });
+
+            const updateDots = (index) => {
+                const allDots = dotsContainer.querySelectorAll('div');
+                allDots.forEach((dot, i) => {
+                    dot.className = `w-2 h-2 rounded-full cursor-pointer transition-all ${i === index ? 'bg-white scale-125' : 'bg-white/50'}`;
+                });
+                currentBannerIndex = index;
+            };
+
+            // Lắng nghe sự kiện scroll để update active Dot
+            bannerSlider.addEventListener('scroll', () => {
+                const scrollPos = bannerSlider.scrollLeft;
+                const index = Math.round(scrollPos / bannerSlider.clientWidth);
+                if (index !== currentBannerIndex) {
+                    updateDots(index);
+                }
+            });
+
+            // Nút Next
+            bannerNextBtn?.addEventListener('click', () => {
+                const isLastSlide = currentBannerIndex === totalSlides - 1;
+                bannerSlider.scrollTo({
+                    left: isLastSlide ? 0 : bannerSlider.scrollLeft + bannerSlider.clientWidth,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Nút Prev
+            bannerPrevBtn?.addEventListener('click', () => {
+                const isFirstSlide = currentBannerIndex === 0;
+                bannerSlider.scrollTo({
+                    left: isFirstSlide ? bannerSlider.clientWidth * (totalSlides - 1) : bannerSlider.scrollLeft - bannerSlider.clientWidth,
+                    behavior: 'smooth'
+                });
+            });
+
+            // Tự động chuyển ảnh (Auto Play) sau mỗi 4 giây
+            setInterval(() => {
+                const isLastSlide = currentBannerIndex === totalSlides - 1;
+                bannerSlider.scrollTo({
+                    left: isLastSlide ? 0 : bannerSlider.scrollLeft + bannerSlider.clientWidth,
+                    behavior: 'smooth'
+                });
+            }, 4000);
+        }
+    </script>
+    </body>
+
+</html>
