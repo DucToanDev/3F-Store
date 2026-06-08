@@ -7,6 +7,7 @@
     <img ref="pawMask" :src="pawImage" alt="" class="paw-mask">
 
     <div ref="ripple" class="ripple" />
+    <audio ref="transitionAudio" :src="transitionSound" preload="auto" />
   </div>
 </template>
 
@@ -19,7 +20,8 @@ export default {
     return {
       timeline: null,
       pawImage: require('@/assets/images/paw.png'),
-      logoImage: require('@/assets/images/logo.webp')
+      logoImage: require('@/assets/images/logo.webp'),
+      transitionSound: require('@/assets/dragon-studio-cute-cat-meow-472372.mp3')
     }
   },
   mounted () {
@@ -36,6 +38,7 @@ export default {
       }
 
       if (this.timeline) this.timeline.kill()
+      this.playTransitionSound()
 
       const overlay = this.$refs.overlay
       const ripple = this.$refs.ripple
@@ -128,6 +131,16 @@ export default {
           window.setTimeout(this.playExit, 80)
         })
       })
+    },
+    playTransitionSound () {
+      const audio = this.$refs.transitionAudio
+      if (!audio) return
+      const now = Date.now()
+      if (window.__last3fSoundAt && now - window.__last3fSoundAt < 1800) return
+      window.__last3fSoundAt = now
+      audio.currentTime = 0
+      audio.volume = 0.55
+      audio.play().catch(() => {})
     }
   }
 }

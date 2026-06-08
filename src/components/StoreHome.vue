@@ -11,13 +11,14 @@
       <img :src="images.dogGif" alt="Cho gif" class="w-36 sm:w-46 md:w-64 h-auto" />
     </div>
 
-    <div class="fixed left-3 bottom-3 z-40 pointer-events-none sm:left-5 sm:bottom-5">
-      <div class="flex flex-col items-start gap-1">
+    <div class="fixed left-3 bottom-3 z-40 sm:left-5 sm:bottom-5">
+      <button type="button" class="flex flex-col items-start gap-1 cursor-pointer group" aria-label="Phát tiếng mèo kêu" @click="playCatSound">
         <div class="cat-wow-bubble rounded-full bg-white px-3 py-1 text-xs sm:text-sm font-black text-[#0051ff] shadow-lg border border-blue-100">
           Ngon thí!
         </div>
-        <img :src="images.catGif" alt="Cho gif" class="w-24 sm:w-24 md:w-32 h-auto" />
-      </div>
+        <img :src="images.catGif" alt="Meo gif" class="w-24 sm:w-24 md:w-32 h-auto transition-transform group-active:scale-95" />
+      </button>
+      <audio ref="catAudio" :src="sounds.catMeow" preload="auto" />
     </div>
 
     <div
@@ -166,7 +167,11 @@ export default {
       lenis: null,
       lenisRafId: null,
       lottieMascot: null,
+      catSoundPlayed: false,
       images,
+      sounds: {
+        catMeow: require('@/assets/dragon-studio-cute-cat-meow-472372.mp3')
+      },
       searchKeywords,
       mobileMenu,
       desktopMenu,
@@ -262,6 +267,7 @@ export default {
     this.$nextTick(() => {
       this.initMascot()
       this.initGsapAnimations()
+      this.initCatSoundAutoplay()
       ScrollTrigger.refresh()
     })
   },
@@ -270,6 +276,8 @@ export default {
     ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
     if (this.lenisRafId) window.cancelAnimationFrame(this.lenisRafId)
     if (this.lenis) this.lenis.destroy()
+    window.removeEventListener('pointerdown', this.playCatSoundOnce)
+    window.removeEventListener('keydown', this.playCatSoundOnce)
     document.body.style.overflow = 'auto'
   },
   methods: {
@@ -329,6 +337,32 @@ export default {
           }
         })
       })
+    },
+    initCatSoundAutoplay () {
+      window.setTimeout(() => {
+        this.playCatSoundOnce()
+        if (!this.catSoundPlayed) {
+          window.addEventListener('pointerdown', this.playCatSoundOnce, { once: true })
+          window.addEventListener('keydown', this.playCatSoundOnce, { once: true })
+        }
+      }, 650)
+    },
+    playCatSoundOnce () {
+      if (this.catSoundPlayed) return
+      this.playCatSound()
+    },
+    playCatSound () {
+      const audio = this.$refs.catAudio
+      if (!audio) return
+      const now = Date.now()
+      if (window.__last3fSoundAt && now - window.__last3fSoundAt < 1800) return
+      window.__last3fSoundAt = now
+      audio.currentTime = 0
+      audio.play()
+        .then(() => {
+          this.catSoundPlayed = true
+        })
+        .catch(() => {})
     }
   }
 }

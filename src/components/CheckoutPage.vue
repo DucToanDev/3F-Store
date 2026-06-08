@@ -108,7 +108,7 @@
               </h2>
               <button type="button" class="text-xs font-black text-[#0051ff]">Xem tất cả <i class="fa-solid fa-chevron-down text-[10px]" /></button>
             </div>
-            <div class="soft-option justify-start gap-3">
+            <div class="soft-option justify-start gap-3" style="justify-content: flex-start;">
               <i class="fa-regular fa-credit-card text-[#0051ff] text-lg" />
               <div>
                 <p class="font-black text-gray-800">Thẻ quốc tế</p>

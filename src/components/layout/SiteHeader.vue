@@ -27,14 +27,29 @@
       </div>
 
       <ul class="flex flex-col text-[15px] text-gray-700 font-medium pb-2 border-b border-gray-200">
-        <li v-for="item in mobileMenu" :key="item.label" class="px-5 py-3.5 cursor-pointer hover:bg-gray-50">
-          <router-link v-if="item.to" :to="item.to" class="flex justify-between items-center" @click.native="closeMenu">
+        <li v-for="item in mobileMenuItems" :key="item.label" class="border-b border-gray-50 last:border-b-0">
+          <router-link v-if="item.to && !item.children" :to="item.to" class="flex justify-between items-center px-5 py-3.5 hover:bg-gray-50" @click.native="closeMenu">
             <span>{{ item.label }}</span>
-            <i v-if="item.hasDropdown" class="fa-solid fa-chevron-down text-xs text-gray-400" />
           </router-link>
-          <div v-else class="flex justify-between items-center">
+          <button v-else type="button" class="w-full flex justify-between items-center px-5 py-3.5 hover:bg-gray-50 text-left" @click="toggleMobileSubmenu(item.label)">
             <span>{{ item.label }}</span>
-            <i v-if="item.hasDropdown" class="fa-solid fa-chevron-down text-xs text-gray-400" />
+            <i
+              v-if="item.children"
+              class="fa-solid fa-chevron-down text-xs text-gray-400 transition-transform"
+              :class="{ 'rotate-180 text-[#0051ff]': openMobileSubmenu === item.label }"
+            />
+          </button>
+          <div v-if="item.children && openMobileSubmenu === item.label" class="bg-[#f4f7ff] px-3 py-2">
+            <router-link
+              v-for="child in item.children"
+              :key="child"
+              to="/products"
+              class="flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-bold text-gray-600 hover:bg-white hover:text-[#0051ff]"
+              @click.native="closeMenu"
+            >
+              <i class="fa-solid fa-paw text-[10px] text-[#0051ff]" />
+              <span>{{ child }}</span>
+            </router-link>
           </div>
         </li>
       </ul>
@@ -128,6 +143,9 @@
           </div>
 
           <div class="flex md:hidden items-center gap-4 text-white flex-shrink-0">
+            <button type="button" class="cursor-pointer" aria-label="Mở tìm kiếm" @click="isMobileSearchOpen = !isMobileSearchOpen">
+              <i class="fa-solid fa-magnifying-glass text-[21px]" />
+            </button>
             <i class="fa-regular fa-circle-user text-[22px] cursor-pointer" />
             <button type="button" class="relative cursor-pointer" @click="openCart">
               <i class="fa-solid fa-cart-shopping text-[22px]" />
@@ -137,7 +155,7 @@
         </div>
       </header>
 
-      <div class="md:hidden bg-[#0051ff] px-4 pb-3 border-b border-blue-700/50 shadow-sm">
+      <div v-if="isMobileSearchOpen" class="md:hidden bg-[#0051ff] px-4 pb-3 border-b border-blue-700/50 shadow-sm">
         <div class="relative w-full">
           <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-red-500 z-10" />
           <input type="text" placeholder="Tìm kiếm sản phẩm..." class="w-full py-2.5 pl-11 pr-4 rounded-xl outline-none text-sm text-gray-700">
@@ -186,7 +204,20 @@ export default {
   data () {
     return {
       isMenuOpen: false,
+      isMobileSearchOpen: false,
+      openMobileSubmenu: '',
       cart
+    }
+  },
+  computed: {
+    mobileMenuItems () {
+      return this.mobileMenu.map((item, index) => {
+        const desktopItem = this.desktopMenu[index] || {}
+        return {
+          ...item,
+          children: item.children || desktopItem.children || null
+        }
+      })
     }
   },
   beforeDestroy () {
@@ -200,7 +231,19 @@ export default {
     },
     closeMenu () {
       this.isMenuOpen = false
+      this.openMobileSubmenu = ''
       document.body.style.overflow = 'auto'
+    },
+    toggleMobileSearch () {
+      this.isMobileSearchOpen = !this.isMobileSearchOpen
+      if (this.isMobileSearchOpen) {
+        this.$nextTick(() => {
+          if (this.$refs.mobileSearchInput) this.$refs.mobileSearchInput.focus()
+        })
+      }
+    },
+    toggleMobileSubmenu (label) {
+      this.openMobileSubmenu = this.openMobileSubmenu === label ? '' : label
     },
     openCart () {
       this.closeMenu()
