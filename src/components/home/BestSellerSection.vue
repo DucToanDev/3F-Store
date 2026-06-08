@@ -10,13 +10,16 @@
           <i class="fa-solid fa-arrow-trend-up text-[#ff4d4f]" />
           <span class="font-bold text-[15px] tracking-wide">#Sản phẩm bán chạy nhất</span>
         </div>
-        <router-link to="/products" class="bg-[#1a56db] hover:bg-blue-500 text-white text-sm font-bold px-6 py-2 rounded-md transition-all shadow-[0_0_15px_rgba(26,86,219,0.6)] active:scale-95">
-          Khám phá
-        </router-link>
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-5">
         <ProductCard v-for="product in products" :key="product.id" :product="product" />
+      </div>
+
+      <div class="flex justify-center mt-8">
+        <router-link to="/products" class="bg-[#1a56db] hover:bg-blue-500 text-white text-sm font-bold px-8 py-3 rounded-md transition-all shadow-[0_0_15px_rgba(26,86,219,0.6)] active:scale-95">
+          Khám phá
+        </router-link>
       </div>
     </div>
   </section>

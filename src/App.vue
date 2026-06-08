@@ -18,25 +18,21 @@ export default {
   },
   data () {
     return {
-      isTransitioning: false,
       removeRouteGuard: null
     }
   },
   mounted () {
-    this.removeRouteGuard = this.$router.beforeEach((to, from, next) => {
+    this.$nextTick(() => {
       const transition = this.$refs.pageTransition
-
-      if (!from.name || to.fullPath === from.fullPath || !transition || this.isTransitioning) {
-        next()
-        return
+      if (transition && !window.__initial3fTransitionPlayed) {
+        window.__initial3fTransitionPlayed = true
+        transition.playTransition()
       }
+    })
 
-      this.isTransitioning = true
-      transition.playTransition(() => {
-        next()
-        this.$nextTick(this.scrollToTop)
-        this.isTransitioning = false
-      })
+    this.removeRouteGuard = this.$router.beforeEach((to, from, next) => {
+      next()
+      if (from.name && to.fullPath !== from.fullPath) this.$nextTick(this.scrollToTop)
     })
   },
   beforeDestroy () {

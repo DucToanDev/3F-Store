@@ -83,7 +83,7 @@
               <i class="fa-solid fa-envelope" /> 3fstorevietnam@gmail.com
             </a>
           </div>
-          <div class="flex justify-end w-full sm:w-auto">
+          <div class="flex justify-center w-full sm:w-auto">
             <span class="flex items-center gap-1.5 cursor-pointer hover:text-gray-200 transition">
               <i class="fa-solid fa-location-dot" /> 16 Đường số 12, P. An Khánh, TP. Thủ Đức, TP. HCM
             </span>
@@ -204,7 +204,7 @@ export default {
   data () {
     return {
       isMenuOpen: false,
-      isMobileSearchOpen: false,
+      isMobileSearchOpen: true,
       openMobileSubmenu: '',
       cart
     }

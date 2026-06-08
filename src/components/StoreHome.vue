@@ -178,8 +178,10 @@ export default {
       footerColumns,
       socials,
       mainBanners: [
-        { src: require('@/assets/images/banner3.png'), alt: 'Banner 1' },
-        { src: require('@/assets/images/banner6.png'), alt: 'Banner 2' }
+        { src: require('@/assets/images/banner-7.png'), alt: 'Banner 1' },
+        { src: require('@/assets/images/banner8.png'), alt: 'Banner 2' },
+        { src: require('@/assets/images/banner3.png'), alt: 'Banner 3' }
+        
       ],
       promoBanners: [
         { src: require('@/assets/images/banner1.png'), alt: 'Thức ăn cho chó' },

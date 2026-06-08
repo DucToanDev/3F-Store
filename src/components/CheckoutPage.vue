@@ -7,7 +7,7 @@
       :desktop-menu="desktopMenu"
     />
 
-    <main class="max-w-7xl mx-auto px-4 py-5 md:py-8">
+    <main class="max-w-7xl mx-auto px-4 py-5 pb-28 md:py-8">
       <nav class="flex items-center gap-2 text-xs text-gray-500 mb-4">
         <router-link to="/" class="hover:text-[#0051ff]">Trang chủ</router-link>
         <i class="fa-solid fa-chevron-right text-[10px] text-gray-300" />
@@ -214,6 +214,17 @@
       :footer-columns="footerColumns"
       :socials="socials"
     />
+
+    <div class="mobile-checkout-bar md:hidden">
+      <div>
+        <span class="block text-[11px] font-bold text-gray-500">Tổng cộng</span>
+        <strong class="text-lg font-black text-[#0051ff]">{{ formatMoney(total) }}</strong>
+      </div>
+      <button type="button">
+        Đặt hàng
+        <i class="fa-solid fa-check" />
+      </button>
+    </div>
   </div>
 </template>
 
@@ -522,5 +533,36 @@ textarea:focus {
   margin-top: 4px;
   font-size: 11px;
   color: #6b7280;
+}
+
+.mobile-checkout-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border-top: 1px solid #e5e7eb;
+  background: rgba(255, 255, 255, 0.96);
+  padding: 12px 16px;
+  box-shadow: 0 -10px 30px rgba(15, 23, 42, 0.1);
+  backdrop-filter: blur(14px);
+}
+
+.mobile-checkout-bar button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 148px;
+  height: 46px;
+  border-radius: 12px;
+  background: #0051ff;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 900;
 }
 </style>
